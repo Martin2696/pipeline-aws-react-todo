@@ -2,16 +2,20 @@ name: ToDo Workflow
 run-name: ${{ github.actor }} is building a new pipeline
 on: [push]
 jobs:
-  audit: 
+  audit:
+    name: npm audit
     runs-on: ubuntu-latest
     steps:
-      - name: Audit packages
-      - run: npm install
-      - run: npm audit --audit-level moderate
-        env:
-          CI: true
+      - uses: actions/checkout@v2
+      - name: install dependencies
+        run: npm ci
+      - name: audit
+        continue-on-error: true
+        run: npm audit
       
   docker_image:
     runs-on: ubuntu-latest
     steps:
-      - run: docker build . t flowdawan/react-todo:1.0.0
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
