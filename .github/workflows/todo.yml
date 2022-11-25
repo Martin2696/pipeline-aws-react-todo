@@ -1,3 +1,6 @@
+env:
+  DOCKER_NAME: martin/react-todo
+
 name: ToDo Workflow
 run-name: ${{ github.actor }} is building a new pipeline
 on: [push]
