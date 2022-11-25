@@ -1,5 +1,5 @@
 env:
-  DOCKER_NAME: martin/react-todo
+  DOCKER_NAME: martin-react-todo
 
 name: ToDo Workflow
 run-name: ${{ github.actor }} is building a new pipeline
