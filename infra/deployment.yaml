@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-todo-deployment
+  labels:
+    app: react-todo
+    infra: internal
+    fh: campus
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: react-todo
+  template:
+    metadata:
+      labels:
+        app: react-todo
+    spec:
+      containers:
+      - name: react-todo
+        image: flowdawan/react-todo:1.0.0
+        ports:
+        - containerPort: 3000
